@@ -27,8 +27,5 @@ jobs:
     - name: gogo
       run: | 
               python bot.py
-    - name: runner
-      run : | 
-              python runner.py
 
 
