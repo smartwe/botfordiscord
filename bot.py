@@ -4,7 +4,9 @@ from selenium import webdriver
 import time
 from bs4 import BeautifulSoup
 import urllib.request
+import os
 
+BOT_TOKEN = os.environ.get['BOT_TOKEN']
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
