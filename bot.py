@@ -136,5 +136,5 @@ async def on_message(message):
         await channel.send(file=discord.File("solvedac1.png"))
         driver.execute_script("window.scrollTo(0, 500)")  
 
-BOT_TOKEN = os.environ.get["BOT_TOKEN"]
+BOT_TOKEN = os.environ["BOT_TOKEN"]
 client.run(BOT_TOKEN)
