@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import os
 
-BOT_TOKEN = os.environ.get['BOT_TOKEN']
+
 
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
@@ -80,74 +80,61 @@ def tierfinder(word):
     else:
         return "언랭크"
 
-
-class chatbot(discord.Client):
-    # 프로그램이 처음 실행되었을 때 초기 구성
-    async def on_ready(self):
-        # 상태 메시지 설정
-        # 종류는 3가지: Game, Streaming, CustomActivity
-        game = discord.Game("!도움말")
-
-        # 계정 상태를 변경한다.
-        # 온라인 상태, game 중으로 설정
-        await client.change_presence(status=discord.Status.online, activity=game)
-
-        # 준비가 완료되면 콘솔 창에 "READY!"라고 표시
-        print("READY")
-
-    # 봇에 메시지가 오면 수행 될 액션
-    async def on_message(self, message):
-        # SENDER가 BOT일 경우 반응을 하지 않도록 한다.
-        if message.author.bot:
+ 
+client = discord.Client()
+ 
+@client.event
+async def on_ready():
+    print('Logged in as')
+    print(client.user.name)
+    print(client.user.id)
+    print('------')
+    game = discord.Game("!도움말")
+    await client.change_presence(status=discord.Status.online, activity=game)
+ 
+@client.event
+async def on_message(message):
+    if message.content.startswith('!test'):
+        await client.send_message(message.channel, 'test!!!!')
+    if message.author.bot:
             return None
-        
-        # message.content = message의 내용
-        if message.content == "!공지":
-            # 현재 채널을 받아옴
-            channel = message.channel
-            await channel.send(file=discord.File("gongji.txt"))
-            return None
-        if message.content == "!도움말" or message.content == "!help" or message.content == "!도움" or message.content == "!명령어":
-            channel = message.channel
-            await channel.send("!공지 : 코딩/프로그래밍 초보자방 [입장코드:해시태그]\n!백준 (유저네임) : 백준에서 유저의 정보를 불러옵니다")
-            return None
-        if message.content.startswith("!백준"):
-            channel = message.channel
-            usrname = message.content.split(" ")
-            url = f"https://www.acmicpc.net/user/{usrname[1]}"
-            url2 = f"https://solved.ac/profile/{usrname[1]}"
-            driver.get(url)
-            html = driver.page_source
-            soup = BeautifulSoup(html, 'html.parser')
-            tierimg = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(1) > div > h1 > img")
-            tier = tierfinder(str(tierimg))
-            rank = soup.select_one("#statics > tbody > tr:nth-child(1) > td")
-            solved = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(2) > div > div.col-md-9 > div:nth-child(1) > div.panel-body")
-            wrong = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(2) > div > div.col-md-9 > div:nth-child(2) > div.panel-body")
-            tier1 = str(tierimg).lstrip('<img class="solvedac-tier" src="')
-            tier2 = tier1.rstrip('"/>')
-            f = open("rank.txt", "w", encoding = "utf-8")
-            f.write(f"티어:{tier}\n랭크:{rank.get_text()}\n푼 문제:{solved.get_text()}\n틀린 문제:{wrong.get_text()}")
-            f.close()
-            await channel.send(file=discord.File("rank.txt")) 
-            driver.get(tier2)
-            driver.save_screenshot("tier.png")
-            await channel.send(file=discord.File("tier.png"))
-            driver.get(url2)
-            driver.execute_script("window.scrollTo(0, 0)")  
-            driver.save_screenshot("solvedac1.png")
-            await channel.send(file=discord.File("solvedac1.png"))
-            driver.execute_script("window.scrollTo(0, 500)")  
+    # message.content = message의 내용
+    if message.content == "!공지":
+        # 현재 채널을 받아옴
+        channel = message.channel
+        await channel.send(file=discord.File("gongji.txt"))
+        return None
+    if message.content == "!도움말" or message.content == "!help" or message.content == "!도움" or message.content == "!명령어":
+        channel = message.channel
+        await channel.send("!공지 : 코딩/프로그래밍 초보자방 [입장코드:해시태그]\n!백준 (유저네임) : 백준에서 유저의 정보를 불러옵니다")
+        return None
+    if message.content.startswith("!백준"):
+        channel = message.channel
+        usrname = message.content.split(" ")
+        url = f"https://www.acmicpc.net/user/{usrname[1]}"
+        url2 = f"https://solved.ac/profile/{usrname[1]}"
+        driver.get(url)
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        tierimg = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(1) > div > h1 > img")
+        tier = tierfinder(str(tierimg))
+        rank = soup.select_one("#statics > tbody > tr:nth-child(1) > td")
+        solved = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(2) > div > div.col-md-9 > div:nth-child(1) > div.panel-body")
+        wrong = soup.select_one("body > div.wrapper > div.container.content > div.row > div:nth-child(2) > div > div.col-md-9 > div:nth-child(2) > div.panel-body")
+        tier1 = str(tierimg).lstrip('<img class="solvedac-tier" src="')
+        tier2 = tier1.rstrip('"/>')
+        f = open("rank.txt", "w", encoding = "utf-8")
+        f.write(f"티어:{tier}\n랭크:{rank.get_text()}\n푼 문제:{solved.get_text()}\n틀린 문제:{wrong.get_text()}")
+        f.close()
+        await channel.send(file=discord.File("rank.txt")) 
+        driver.get(tier2)
+        driver.save_screenshot("tier.png")
+        await channel.send(file=discord.File("tier.png"))
+        driver.get(url2)
+        driver.execute_script("window.scrollTo(0, 0)")  
+        driver.save_screenshot("solvedac1.png")
+        await channel.send(file=discord.File("solvedac1.png"))
+        driver.execute_script("window.scrollTo(0, 500)")  
 
-            
-
-
-    
-
-
-# 프로그램이 실행되면 제일 처음으로 실행되는 함수
-if __name__ == "__main__":
-    # 객체를 생성
-    client = chatbot()
-    # TOKEN 값을 통해 로그인하고 봇을 실행
-    client.run(BOT_TOKEN)
+BOT_TOKEN = "ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.1ooHBIxyjKnYE8a7LPBhzivKer0" #os.environ.get["BOT_TOKEN"]
+client.run(BOT_TOKEN)
