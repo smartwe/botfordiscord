@@ -171,5 +171,13 @@ async def on_message(message):
         time.sleep(2)
         driver.save_screenshot("tio.png")
         await channel.send(file=discord.File("tio.png"))     
+    if message.content.startswith("!백준이미지") or message.content.startswith("!백준임지"):
+        channel = message.channel
+        usrname = message.content.split(" ")
+        driver.get(f"http://mazassumnida.wtf/api/generate_badge?boj={usrname[1]}")
+        driver.set_window_size(350, 170)
+        driver.save_screenshot("bojimg.png")
+        await channel.send(file=discord.File("bojimg.png"))
+
 
 client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.MGp54pNLExMmUwLcKweEYmh-9Ug")
