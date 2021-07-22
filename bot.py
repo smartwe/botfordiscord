@@ -5,7 +5,7 @@ import time
 from bs4 import BeautifulSoup
 import urllib.request
 import os
-
+from selenium.webdriver.common.keys import Keys
 
 
 options = webdriver.ChromeOptions()
@@ -13,6 +13,7 @@ options.add_argument('headless')
 options.add_argument('--start-fullscreen')
 
 driver = webdriver.Chrome("chromedriver",  options=options)
+driver.set_window_size(1920, 1080)
 
 def tierfinder(word):
     if word.find('tier/1.svg') != -1:
@@ -135,10 +136,36 @@ async def on_message(message):
         code = message.content.split("==>")
         compiler = "https://tio.run/#cpp-gcc"
         driver.get(compiler)
-        driver.find_element_by_xpath("//*[@id='input']").send_keys(code[1])
-        driver.find_element_by_xpath("//*[@id='run']").click()
-        driver.find_element_by_xpath("//*[@id='output']").click()
-        await channel.send(file=discord.File("output.txt"))
-        
+        driver.find_element_by_id("code").send_keys(code[1])
+        driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
+        driver.find_element_by_id("input").send_keys(code[2])
+        driver.find_element_by_id("run").click()
+        time.sleep(2)
+        driver.save_screenshot("tio.png")
+        await channel.send(file=discord.File("tio.png"))
+    if message.content.startswith("!JAVA"):
+        channel = message.channel
+        code = message.content.split("==>")
+        compiler = "https://tio.run/#java-jdk"
+        driver.get(compiler)
+        driver.find_element_by_id("code").send_keys(code[1])
+        driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
+        driver.find_element_by_id("input").send_keys(code[2])
+        driver.find_element_by_id("run").click()
+        time.sleep(2)
+        driver.save_screenshot("tio.png")
+        await channel.send(file=discord.File("tio.png"))     
+    if message.content.startswith("!PYthon") or message.content.startswith("!PY"):
+        channel = message.channel
+        code = message.content.split("==>")
+        compiler = "https://tio.run/#java-jdk"
+        driver.get(compiler)
+        driver.find_element_by_id("code").send_keys(code[1])
+        driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
+        driver.find_element_by_id("input").send_keys(code[2])
+        driver.find_element_by_id("run").click()
+        time.sleep(2)
+        driver.save_screenshot("tio.png")
+        await channel.send(file=discord.File("tio.png"))     
 
 client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.3JCGrQOeFiXa6FaNVnE7xpwpN7U")
