@@ -172,4 +172,4 @@ async def on_message(message):
         driver.save_screenshot("tio.png")
         await channel.send(file=discord.File("tio.png"))     
 
-client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.3JCGrQOeFiXa6FaNVnE7xpwpN7U")
+client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.MGp54pNLExMmUwLcKweEYmh-9Ug")
