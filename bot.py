@@ -130,10 +130,5 @@ async def on_message(message):
         driver.get(tier2)
         driver.save_screenshot("tier.png")
         await channel.send(file=discord.File("tier.png"))
-        driver.get(url2)
-        driver.execute_script("window.scrollTo(0, 0)")  
-        driver.save_screenshot("solvedac1.png")
-        await channel.send(file=discord.File("solvedac1.png"))
-        driver.execute_script("window.scrollTo(0, 500)")  
 
 client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.3JCGrQOeFiXa6FaNVnE7xpwpN7U")
