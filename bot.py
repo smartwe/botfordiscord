@@ -183,6 +183,16 @@ async def on_message(message):
         channel = message.channel
         question = message.content.split(" ")
         await channel.send(file=discord.File(f"boj/BOJ/{question[1]}.cpp"))
+    if message.content == "!오늘의 문제":
+        channel = message.channel
+        driver.get("https://raw.githubusercontent.com/tony9402/baekjoon/main/picked.md")
+        html = driver.page_source
+        soup = BeautifulSoup(html, 'html.parser')
+        picked = soup.select_one("body > pre").get_text()
+        f = open("boj/picked/picked.md", 'w', encoding = 'utf-8')
+        f.write(picked)
+        f.close()
+        await channel.send(file=discord.File(f"boj/picked/picked.md"))
 
         
 
