@@ -161,7 +161,7 @@ async def on_message(message):
     if message.content.startswith("!Python") or message.content.startswith("!PY"):
         channel = message.channel
         code = message.content.split("==>")
-        compiler = "https://tio.run/#java-jdk"
+        compiler = "https://tio.run/#python3-pypy"
         driver.get(compiler)
         code[2] = ""
         driver.find_element_by_id("code").send_keys(code[1])
