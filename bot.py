@@ -179,6 +179,12 @@ async def on_message(message):
         time.sleep(3)
         driver.save_screenshot("bojimg.png")
         await channel.send(file=discord.File("bojimg.png"))
+    if message.content.startswith("!백준정답"):
+        channel = message.channel
+        question = message.content.split(" ")
+        await channel.send(file=discord.File(f"boj/BOJ/{question[1]}.cpp"))
+
+        
 
 
 client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.AVp5DaT-Ktgh9NMj4bDqogDGiTI")
