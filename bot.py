@@ -130,5 +130,15 @@ async def on_message(message):
         driver.get(tier2)
         driver.save_screenshot("tier.png")
         await channel.send(file=discord.File("tier.png"))
+    if message.content.startswith("!C++"):
+        channel = message.channel
+        code = message.content.split("==>")
+        compiler = "https://tio.run/#cpp-gcc"
+        driver.get(compiler)
+        driver.find_element_by_xpath("//*[@id='input']").send_keys(code[1])
+        driver.find_element_by_xpath("//*[@id='run']").click()
+        driver.find_element_by_xpath("//*[@id='output']").click()
+        await channel.send(file=discord.File("output.txt"))
+        
 
 client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.3JCGrQOeFiXa6FaNVnE7xpwpN7U")
