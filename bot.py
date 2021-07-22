@@ -132,6 +132,7 @@ async def on_message(message):
         driver.save_screenshot("tier.png")
         await channel.send(file=discord.File("tier.png"))
     if message.content.startswith("!C++"):
+        driver.set_window_size(1920, 1080)
         channel = message.channel
         code = message.content.split("==>")
         compiler = "https://tio.run/#cpp-gcc"
@@ -146,6 +147,7 @@ async def on_message(message):
         await channel.send(file=discord.File("tio.png"))
 
     if message.content.startswith("!JAVA"):
+        driver.set_window_size(1920, 1080)
         channel = message.channel
         code = message.content.split("==>")
         compiler = "https://tio.run/#java-jdk"
@@ -159,6 +161,7 @@ async def on_message(message):
         driver.save_screenshot("tio.png")
         await channel.send(file=discord.File("tio.png"))     
     if message.content.startswith("!Python") or message.content.startswith("!PY"):
+        driver.set_window_size(1920, 1080)
         channel = message.channel
         code = message.content.split("==>")
         compiler = "https://tio.run/#python3-pypy"
@@ -183,18 +186,14 @@ async def on_message(message):
         channel = message.channel
         question = message.content.split(" ")
         await channel.send(file=discord.File(f"boj/BOJ/{question[1]}.cpp"))
-    if message.content == "!오늘의 문제":
+    if message.content == "!오늘의 문제" or message.content == "!오늘의 문제 보기":
         channel = message.channel
-        driver.get("https://raw.githubusercontent.com/tony9402/baekjoon/main/picked.md")
-        html = driver.page_source
-        soup = BeautifulSoup(html, 'html.parser')
-        picked = soup.select_one("body > pre").get_text()
-        f = open("boj/picked/picked.md", 'w', encoding = 'utf-8')
-        f.write(picked)
-        f.close()
-        await channel.send(file=discord.File(f"boj/picked/picked.md"))
+        driver.get("https://github.com/tony9402/baekjoon/blob/main/picked.md")
+        driver.save_screenshot("todayproblem.png")
+        await channel.send(file=discord.File(f"todayproblem.png"))
+
 
         
 
 
-client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.uwfzSKV3x03jNUMhncE0tKzMEl8")
+client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.qkCVHp4fJNL-Hmn7dEtTCRPQTEE")
