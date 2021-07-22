@@ -136,6 +136,7 @@ async def on_message(message):
         code = message.content.split("==>")
         compiler = "https://tio.run/#cpp-gcc"
         driver.get(compiler)
+        code[2] = ""
         driver.find_element_by_id("code").send_keys(code[1])
         driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
         driver.find_element_by_id("input").send_keys(code[2])
@@ -143,11 +144,13 @@ async def on_message(message):
         time.sleep(2)
         driver.save_screenshot("tio.png")
         await channel.send(file=discord.File("tio.png"))
+
     if message.content.startswith("!JAVA"):
         channel = message.channel
         code = message.content.split("==>")
         compiler = "https://tio.run/#java-jdk"
         driver.get(compiler)
+        code[2] = ""
         driver.find_element_by_id("code").send_keys(code[1])
         driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
         driver.find_element_by_id("input").send_keys(code[2])
@@ -155,11 +158,12 @@ async def on_message(message):
         time.sleep(2)
         driver.save_screenshot("tio.png")
         await channel.send(file=discord.File("tio.png"))     
-    if message.content.startswith("!PYthon") or message.content.startswith("!PY"):
+    if message.content.startswith("!Python") or message.content.startswith("!PY"):
         channel = message.channel
         code = message.content.split("==>")
         compiler = "https://tio.run/#java-jdk"
         driver.get(compiler)
+        code[2] = ""
         driver.find_element_by_id("code").send_keys(code[1])
         driver.find_element_by_xpath("/html/body/div[1]/div[4]/h3[5]/label").click()
         driver.find_element_by_id("input").send_keys(code[2])
