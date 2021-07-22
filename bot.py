@@ -176,6 +176,7 @@ async def on_message(message):
         usrname = message.content.split(" ")
         driver.get(f"http://mazassumnida.wtf/api/generate_badge?boj={usrname[1]}")
         driver.set_window_size(350, 170)
+        time.sleep(3)
         driver.save_screenshot("bojimg.png")
         await channel.send(file=discord.File("bojimg.png"))
 
