@@ -181,4 +181,4 @@ async def on_message(message):
         await channel.send(file=discord.File("bojimg.png"))
 
 
-client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.F5gQ2H2KRVFTHb9xfKALgaQYcVs")
+client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.AVp5DaT-Ktgh9NMj4bDqogDGiTI")
