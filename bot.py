@@ -107,7 +107,7 @@ async def on_message(message):
         return None
     if message.content == "!도움말" or message.content == "!help" or message.content == "!도움" or message.content == "!명령어":
         channel = message.channel
-        await channel.send("!공지 : 코딩/프로그래밍 초보자방 [입장코드:해시태그]\n!백준 (유저네임) : 백준에서 유저의 정보를 불러옵니다")
+        await channel.send('!공지 : 코딩/프로그래밍 초보자방 [입장코드:해시태그]\n!백준 (유저네임) : 백준에서 유저의 정보를 불러옵니다\n!Python==>(소스코드)==>(입력받을 것): python 소스코드를 컴파일\n!JAVA"!C++\n"')
         return None
     if message.content.startswith("!백준"):
         channel = message.channel
