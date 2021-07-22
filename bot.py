@@ -136,4 +136,4 @@ async def on_message(message):
         await channel.send(file=discord.File("solvedac1.png"))
         driver.execute_script("window.scrollTo(0, 500)")  
 
-client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.1ooHBIxyjKnYE8a7LPBhzivKer0")
+client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.3JCGrQOeFiXa6FaNVnE7xpwpN7U")
