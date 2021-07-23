@@ -6,8 +6,9 @@ from bs4 import BeautifulSoup
 import urllib.request
 import os
 from selenium.webdriver.common.keys import Keys
+import os
 
-
+os.system("chmod 777 bot.py")
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
