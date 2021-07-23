@@ -8,6 +8,7 @@ import os
 from selenium.webdriver.common.keys import Keys
 import os
 
+token = os.environ['BOT_TOKEN']
 os.system("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ")
 os.system("sudo dpkg -i google-chrome-stable_current_amd64.deb")
 os.system("chmod 777 chromedriver")
@@ -199,4 +200,4 @@ async def on_message(message):
         
 
 
-client.run("ODY3MDQ0NTU4OTU2Nzg5Nzgw.YPbYKw.dLPql8CFXNW-IFdFDAy5uUUFyrQ")
+client.run(BOT_TOKEN)
