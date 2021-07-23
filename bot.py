@@ -9,9 +9,6 @@ from selenium.webdriver.common.keys import Keys
 import os
 
 token = os.environ['BOT_TOKEN']
-os.system("wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb ")
-os.system("sudo dpkg -i google-chrome-stable_current_amd64.deb")
-os.system("chmod 777 chromedriver")
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
