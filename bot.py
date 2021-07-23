@@ -8,7 +8,7 @@ import os
 from selenium.webdriver.common.keys import Keys
 import os
 
-os.system("chmod 777 bot.py")
+os.system("chmod 777 chromedriver")
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
