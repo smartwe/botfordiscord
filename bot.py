@@ -12,7 +12,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
 
-driver = webdriver.Chrome("chromedriver",  options=options)
+driver = webdriver.Chrome("./chromedriver",  options=options)
 driver.set_window_size(1920, 1080)
 
 def tierfinder(word):
