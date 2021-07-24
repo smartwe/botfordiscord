@@ -9,7 +9,6 @@ from selenium.webdriver.common.keys import Keys
 
 os.system("chmod 777 chromedriver")
 token = os.environ['BOT_TOKEN']
-os.system("apt-get install ttf-unfonts-core")
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("--no-sandbox")
