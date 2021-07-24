@@ -13,7 +13,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("--no-sandbox")
 options.add_argument('--start-fullscreen')
-options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+options.binary_location = "/app/.apt/usr/bin/google-chrome"
 driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", options=options)
 driver.set_window_size(1920, 1080)
 
