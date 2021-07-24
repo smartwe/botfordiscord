@@ -8,12 +8,13 @@ import os
 from selenium.webdriver.common.keys import Keys
 import os
 
+os.system("chmod 777 chromedriver")
 token = os.environ['BOT_TOKEN']
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
 
-driver = webdriver.Chrome("./chromedriver",  options=options)
+driver = webdriver.Chrome("chromedriver",  options=options)
 driver.set_window_size(1920, 1080)
 
 def tierfinder(word):
