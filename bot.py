@@ -12,8 +12,8 @@ token = os.environ['BOT_TOKEN']
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
-
-driver = webdriver.Chrome("chromedriver",  options=options)
+options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
+driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), options=options)
 driver.set_window_size(1920, 1080)
 
 def tierfinder(word):
