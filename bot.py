@@ -13,8 +13,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument("--no-sandbox")
 options.add_argument('--start-fullscreen')
-options.binary_location = "/app/.apt/usr/bin/google-chrome"
-driver = webdriver.Chrome(executable_path="/app/.chromedriver/bin/chromedriver", options=options)
+driver = webdriver.Chrome(executable_path="C:\Users\spark\Desktop\discord\discordorgbot\chromedriver", options=options)
 driver.set_window_size(1920, 1080)
 
 def tierfinder(word):
