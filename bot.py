@@ -7,7 +7,7 @@ import urllib.request
 import os
 from selenium.webdriver.common.keys import Keys
 
-
+token = os.environ['BOT_TOKEN']
 options = webdriver.ChromeOptions()
 options.add_argument('headless')
 options.add_argument('--start-fullscreen')
@@ -196,4 +196,4 @@ async def on_message(message):
         
 
 
-client.run("")#token here
+client.run(token)
