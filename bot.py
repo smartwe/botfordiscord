@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 import urllib.request
 import os
 from selenium.webdriver.common.keys import Keys
-import os
 
 os.system("chmod 777 chromedriver")
 token = os.environ['BOT_TOKEN']
@@ -198,4 +197,4 @@ async def on_message(message):
         
 
 
-client.run(BOT_TOKEN)
+client.run(token)
